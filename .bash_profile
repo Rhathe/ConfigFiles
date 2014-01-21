@@ -1,3 +1,4 @@
+alias gitinit='git init && git add . && git commit -m "Init this commit in it"'
 alias upmast="git stash && git checkout master && git pull --rebase upstream master && git push origin master && git stash pop"
 alias brclean="git stash && git checkout master && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d && git stash pop"
 
