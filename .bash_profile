@@ -16,3 +16,7 @@ alias rebase=myrebase
 
 alias grep="\grep --color=auto"
 alias egrep="\egrep --color=auto"
+
+export LS_OPTIONS='--color=auto'
+eval "`dircolors`"
+alias ls='ls $LS_OPTIONS'
