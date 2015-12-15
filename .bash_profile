@@ -36,3 +36,6 @@ rebase() {
 sandr() {
 	find $1 -type f -exec sed -i -e "s/$2/$3/g" {} \;
 }
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
