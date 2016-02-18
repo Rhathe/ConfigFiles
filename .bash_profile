@@ -37,5 +37,11 @@ sandr() {
 	find $1 -type f -exec sed -i -e "s/$2/$3/g" {} \;
 }
 
+fsandr() {
+	export PATTERN="$2"
+	export REPLACE="$3"
+	find $1 -name "*$2*" -type f -exec bash -c 'NEWFILE="${1//$PATTERN/$REPLACE}"; mkdir -p `dirname $NEWFILE`; mv $1 $NEWFILE;' -- {} \;
+}
+
 export VISUAL=vim
 export EDITOR="$VISUAL"
