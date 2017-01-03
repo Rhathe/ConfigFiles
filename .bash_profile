@@ -7,8 +7,11 @@ alias grep="\grep --color=auto"
 alias egrep="\egrep --color=auto"
 
 export LS_OPTIONS='--color=auto'
-eval "`dircolors`"
-alias ls='ls $LS_OPTIONS'
+alias ls="\ls -FHG"
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+	. $(brew --prefix)/etc/bash_completion
+fi
 
 bamgruntstart() {
 	tmux split-window -v && tmux send-keys -t 2 \
@@ -34,7 +37,19 @@ rebase() {
 }
 
 sandr() {
-	find $1 -type f -exec sed -i -e "s/$2/$3/g" {} \;
+	LC_CTYPE=C LANG=C find $1 ! -name '*.pyc' -type f -print0 | xargs -0 grep -rl --null "$2" | xargs -0 sed -i '' -e "s/$2/$3/g"
+}
+
+gitclear() {
+	git add .
+	git stash
+	git stash drop
+}
+
+fsandr() {
+	export PATTERN="$2"
+	export REPLACE="$3"
+	find $1 -name "*$2*" -type f -exec bash -c 'NEWFILE="${1//$PATTERN/$REPLACE}"; mkdir -p `dirname $NEWFILE`; mv $1 $NEWFILE;' -- {} \;
 }
 
 fsandr() {
