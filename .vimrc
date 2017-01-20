@@ -10,3 +10,4 @@ set backspace=indent,eol,start
 autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
 filetype indent off
 syntax on
+au BufReadPost Jenkinsfile set syntax=groovy
