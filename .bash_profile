@@ -13,6 +13,10 @@ if [ command -v brew >/dev/null 2>&1 && -f $(brew --prefix)/etc/bash_completion 
 	. $(brew --prefix)/etc/bash_completion
 fi
 
+if [ command -v git >/dev/null 2>&1 && command -v vim >/dev/null 2>&1 ]; then
+	git config --global core.editor "vim"
+fi
+
 bamgruntstart() {
 	tmux split-window -v && tmux send-keys -t 2 \
 	"vagrant ssh -c 'cd /opt/bamx; docker rm grunt_server; make docker-grunt-serve;'" Enter;
