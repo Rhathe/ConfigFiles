@@ -8,4 +8,6 @@ plugin-setup:
 	mkdir -p ~/.vim/autoload ~/.vim/bundle
 	curl https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim -o ~/.vim/autoload/pathogen.vim
 	rm -rf ~/.vim/bundle/typescript-vim
+	rm -rf ~/.vim/bundle/vim-elixir
 	git clone https://github.com/leafgarland/typescript-vim.git ~/.vim/bundle/typescript-vim
+	git clone https://github.com/elixir-lang/vim-elixir.git ~/.vim/bundle/vim-elixir

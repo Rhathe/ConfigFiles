@@ -17,19 +17,6 @@ if [ command -v git >/dev/null 2>&1 && command -v vim >/dev/null 2>&1 ]; then
 	git config --global core.editor "vim"
 fi
 
-bamgruntstart() {
-	tmux split-window -v && tmux send-keys -t 2 \
-	"vagrant ssh -c 'cd /opt/bamx; docker rm grunt_server; make docker-grunt-serve;'" Enter;
-	grunt serve;
-}
-
-bamstart() {
-	vagrant up && vagrant ssh -c \
-	"cd /opt/bamx && docker-compose up -d &&
-	docker exec -it bamx_web_1 bash -c 'make reset_db; make reset_stats_db'";
-	grunt serve;
-}
-
 rebase() {
 	re='^[0-9]+$'
 	if [[ $1 =~ $re ]]
